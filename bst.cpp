@@ -11,8 +11,9 @@ using std::cout;
 
 
 bst::bst(vector<int>&v){
-    for (int i : v) {
-        insert(i);
+    vector<int>::iterator i;
+    for (i = v.begin(); i != v.end(); i++) {
+        this->insert(*i);
     }
 }
 
@@ -64,7 +65,9 @@ bool bst::insert(int value, bstNode *n) {
 
 
 void bst::deleteSubtree(int key){
-
+    bstNode* cutLoc;
+    cutLoc = getNodeFor(key, this->root);
+    clear(cutLoc);
 }
 int bst::countLeaves(bstNode *n) const{
     if (!this->root) return -1;
