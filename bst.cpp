@@ -77,6 +77,7 @@ int bst::countLeaves(bstNode *n) const{
     } else if (!n->left) {
         return countLeaves(n->right);
     }
+    return 0;
     
 }
 int bst::countParentsWithTwoChildren(bstNode *n) const{
@@ -90,6 +91,7 @@ int bst::countParentsWithTwoChildren(bstNode *n) const{
     } else if (n->left && n->right) {
         return 1 + countParentsWithTwoChildren(n->left) + countParentsWithTwoChildren(n->right);
     }
+    return 0;
     
 }
 int bst::height(bstNode *n) const{
@@ -109,6 +111,7 @@ int bst::height(bstNode *n) const{
             }
         }
     }
+    return 0;
 }
 void bst::outputPreOrder(bstNode *n, vector<int>& output) const{
     if (!this->root) return;
