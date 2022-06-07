@@ -11,9 +11,12 @@ using std::cout;
 
 
 bst::bst(vector<int>&v){
-    vector<int>::iterator i;
-    for (i = v.begin(); i != v.end(); i++) {
-        this->insert(*i);
+    // vector<int>::iterator i;
+    // for (i = v.begin(); i != v.end(); i++) {
+    //     this->insert(*i);
+    // }
+    for (auto& itr: v) {
+        this->insert(itr);
     }
 }
 
