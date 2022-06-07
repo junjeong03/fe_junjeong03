@@ -11,11 +11,13 @@ using std::cout;
 
 
 bst::bst(vector<int>&v){
-
+    for (int i : v) {
+        insert(i);
+    }
 }
 
 bst::~bst(){
-
+    clear(this->root);
 }
 
 
@@ -65,13 +67,21 @@ void bst::deleteSubtree(int key){
 
 }
 int bst::countLeaves(bstNode *n) const{
-    return 0;
+    if (!this->root) return -1;
+    int count = 0;
+    return count;
 }
 int bst::countParentsWithTwoChildren(bstNode *n) const{
-    return 0;
+    if (!this->root) return -1;
+    int count = 0;
+    return count;
 }
 int bst::height(bstNode *n) const{
-    return 0;
+    if (!this->root) return -1;
+    else {
+        int height = 0;
+        return height;
+    }
 }
 void bst::outputPreOrder(bstNode *n, vector<int>& output) const{
     return;
@@ -92,4 +102,12 @@ typename bst::bstNode* bst::getNodeFor(int value, bstNode* n) const{
         }
     }
     return nullptr; // Node doesn't exist in tree
+}
+
+void bst::clear(bstNode *n) {
+    if (n) {
+        clear(n->left);
+        clear(n->right);
+        delete n;
+    }
 }
