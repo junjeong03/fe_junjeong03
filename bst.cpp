@@ -68,26 +68,61 @@ void bst::deleteSubtree(int key){
 }
 int bst::countLeaves(bstNode *n) const{
     if (!this->root) return -1;
-    int count = 0;
-    return count;
+    if (!n->right && !n->left) {
+        return 1;
+    } else if (n->right && n->left) {
+        return countLeaves(n->right) + countLeaves(n->left);
+    } else if (!n->right) {
+        return countLeaves(n->left);
+    } else if (!n->left) {
+        return countLeaves(n->right);
+    }
+    
 }
 int bst::countParentsWithTwoChildren(bstNode *n) const{
     if (!this->root) return -1;
-    int count = 0;
-    return count;
+    if (!n->right && !n->left) {
+        return 0;
+    } else if (n->right && !n->left) {
+        return countParentsWithTwoChildren(n->right);
+    } else if (n->left && !n->right) {
+        return countParentsWithTwoChildren(n->left);
+    } else if (n->left && n->right) {
+        return 1 + countParentsWithTwoChildren(n->left) + countParentsWithTwoChildren(n->right);
+    }
+    
 }
 int bst::height(bstNode *n) const{
     if (!this->root) return -1;
     else {
-        int height = 0;
-        return height;
+        if (!n->right && !n->left) {
+            return 0;
+        } else if (n->right) {
+            return 1 + height(n->right);
+        } else if (n->left) {
+            return 1 + height(n->left);
+        } else if (n->right && n->left) {
+            if (height(n->right) > height(n->left)) {
+                return 1 + height(n->right);
+            } else {
+                return 1 + height(n->left);
+            }
+        }
     }
 }
 void bst::outputPreOrder(bstNode *n, vector<int>& output) const{
+    if (!this->root) return;
+    output.insert(output.begin() + output.size() - 1, root->info);
+    if (n->left) outputPreOrder(n->left, output);
+    if (n->right) outputPreOrder(n->right, output);
     return;
 }
 void bst::outputInOrder(bstNode *n, vector<int>& output) const{
-   return;
+    if (!this->root) return;
+    if (n->left) outputPreOrder(n->left, output);
+    output.insert(output.begin() + output.size() - 1, root->info);
+    if (n->right) outputPreOrder(n->right, output);
+    return;
 }
 
 typename bst::bstNode* bst::getNodeFor(int value, bstNode* n) const{
